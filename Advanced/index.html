@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="RequestSharp">
+        <link rel="canonical" href="https://requestsharp.github.io/Advanced/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Advanced - RequestSharp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">RequestSharp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Http%20Methods/" class="nav-link">Http Methods</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Advanced</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Reference/" class="nav-link">Reference</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Http%20Methods/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Reference/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#in-depth-with-session-object" class="nav-link">In depth with Session object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#streaming-requests" class="nav-link">Streaming Requests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#using-proxies" class="nav-link">Using proxies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#using-certificates" class="nav-link">Using certificates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#timeouts" class="nav-link">Timeouts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#and-yes-we-are-done-for-now-please-donot-forget-to-star-the-github-repo" class="nav-link">And Yes We Are Done For Now Please Donot Forget To Star The github repo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="in-depth-with-session-object"><strong>In depth with Session object</strong></h2>
+<h4 id="the-session-object-exists-for-a-reason-ofc-not-to-only-just-make-the-requests-but-also-to-persists-some-data">The Session object exists for a reason ofc not to only just make the requests but also to persists some data</h4>
+<p><br></p>
+<h5 id="lets-say-there-is-a-website-that-you-will-be-logging-into-and-you-want-to-keep-on-being-logged-in-and-to-request-it-again-as-the-signed-user">Lets say there is a website that you will be logging into and you want to keep on being logged in and to request it again as the signed user</h5>
+<h5 id="here-comes-the-use-of-session">Here comes the use of Session</h5>
+<h6 id="heres-a-example-how-something-like-that-could-be-implemented">Heres a example how something like that could be implemented</h6>
+<pre><code class="language-cs">Session s = new Session(/*you can specify some parameters here like headers and cookies and others*/)
+// The payload Dictionary
+Dictionary&lt;string,string&gt; payload = new Dictionary&lt;string,string&gt;{
+    {&quot;email&quot;,&quot;exampleEmail@ex.co&quot;},
+    {&quot;password&quot;,&quot;secret123&quot;}
+};
+
+Response r = s.Post(&quot;https://example/login/post&quot;,data:payload);
+// Now lets persist the cookies was sent from the server
+s.cookies = r.cookies;
+// Yes easy as that
+// Lets say you want to add more
+s.cookies = s.cookies.Add(/*params here*/);
+// Okay done perfect
+// Now you do not want those cookies to be used any more
+// Simply
+s.ClearCookies();
+</code></pre>
+<h3 id="so-what-about-the-headers"><strong>So what about the headers?</strong></h3>
+<h5 id="you-can-persists-them-too-using">You can persists them too using</h5>
+<pre><code class="language-cs">Session s = new Session(/*you can specify some parameters here like headers and cookies and others*/);
+// To set the headers
+s.headers = yourDict;
+// This will override the default headers
+Response r = s.Get(&quot;https://example.com&quot;);
+</code></pre>
+<h5 id="but-here-comes-a-important-note">But here comes a <span style="color:red">important</span> note :</h5>
+<p><br></p>
+<h5 id="when-you-specify-the-headers-in-the-session-and-in-the-request-it-sends-both-of-them">When you specify the headers in the Session and in the request it sends both of them</h5>
+<h6 id="so-as-a-example">So as a example</h6>
+<pre><code class="language-cs">Dictionary&lt;string, string&gt; headers = new Dictionary&lt;string, string&gt;(){
+    {&quot;headOne&quot;,&quot;valueOne&quot;}
+};
+s.headers = headers;
+Response r = s.Get(&quot;https://httpbin.org/headers&quot;);
+Console.WriteLine(r.text);
+/*
+{
+  &quot;headers&quot;: {
+    &quot;Headone&quot;: &quot;valueOne&quot;,
+    &quot;Host&quot;: &quot;httpbin.org&quot;,
+    &quot;X-Amzn-Trace-Id&quot;: &quot;X-Amzn-Trace-Id Value&quot;
+  }
+}
+*/
+Dictionary&lt;string, string&gt; headers2 = new Dictionary&lt;string, string&gt;(){
+    {&quot;headTwi&quot;,&quot;valueTwo&quot;}
+};
+Response r2 = s.Get(&quot;https://httpbin.org/headers&quot;,headers:headers2);
+Console.WriteLine(r.text);
+// Will result to
+/*
+{
+  &quot;headers&quot;: {
+    &quot;Headone&quot;: &quot;valueOne&quot;,
+    &quot;Headtwo&quot;: &quot;valueTwo&quot;,
+    &quot;Host&quot;: &quot;httpbin.org&quot;,
+    &quot;X-Amzn-Trace-Id&quot;: &quot;X-Amzn-Trace-Id Value&quot;
+  }
+}
+*/
+</code></pre>
+<h5 id="so-if-you-donot-need-that-simply-use">So if you donot need that simply use</h5>
+<pre><code class="language-cs">s.ClearHeaders(); // This will clear the headers given and stick wit the default Defaultparms.headers;
+</code></pre>
+<h5 id="if-you-want-to-clear-all-of-them-simply-use">If you want to clear all of them simply use</h5>
+<pre><code class="language-cs">s.ClearAllHeaders(); // This will set the header to a empty Dictionary
+</code></pre>
+<h3 id="to-prevent-resource-allocation-use-the-garbage-collector-as-a-example">To prevent resource allocation use the  garbage collector as a example</h3>
+<pre><code class="language-cs">Response r = s.Get(&quot;http://example.com/largecontent&quot;).text;
+// Now the r will contain a very large amount in data held in memory as example
+// You got a program makes alot of requests and they are needed only one time
+// It will occupy the memory for no reason so to fix that you can do the following
+r = null;
+GC.Collect(); // Not reccommended for small requests
+</code></pre>
+<hr>
+
+<h2 id="streaming-requests">Streaming Requests</h2>
+<h4 id="using-the-responseitercontent">Using the Response.IterContent()</h4>
+<h4 id="will-keep-on-yielding-enumerable-bytes-array">Will keep on yielding enumerable bytes array</h4>
+<h4 id="as-a-example">As a example</h4>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://example.com/verylargefile&quot;,stream:true,/*OTHER PARAMS*/);
+Encoding encoding = Encoding.GetEncoding(&quot;utf-8&quot;); // You can also use r.encoding NOTE: sometimes its null
+foreach(byte[] bytes in r.IterContent()){
+  Console.Write(encoding.GetString(bytes));
+}
+// If you want to get the encoding based on the byte array you can use Ude https://github.com/errepi/ude
+</code></pre>
+<h3 id="example-of-downloading-a-rar-file">Example of downloading a rar file</h3>
+<pre><code class="language-cs">string filePath = &quot;path/to/save.rar&quot;;
+Response r = s.Get(&quot;https://example.com/test.rar&quot;);
+Console.WriteLine(r.status_code.ToString());
+using (FileStream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Making a filestream with the required params
+{
+    foreach (byte[] item in rr1.IterContent())
+    {
+        stream.Write(item, 0, item.Length); // item is the byte array 0 is the offest item.Length the array length
+    }
+}
+</code></pre>
+<h2 id="using-proxies">Using proxies</h2>
+<pre><code class="language-cs">// initialize the proxy object
+Proxy proxy = new Proxy(&quot;IPADDRESS&quot;,(int)port);
+// Or using
+IP ip = new IP(&quot;IP&quot;);
+PORT port = new PORT(443);
+Proxy proxy1 = new Proxy(ip,port);
+Response r = s.Get(&quot;https://example.com&quot;,proxy:proxy1);
+</code></pre>
+<h3 id="or-you-can-persist-it">Or you can persist it</h3>
+<pre><code class="language-cs">Session = new Session();
+s.proxy = proxy1; // Set the proxy that will be used in each request
+</code></pre>
+<h3 id="also-you-can-build-a-super-simple-checking-on-ip-like-the-following">Also you can build a super simple checking on ip like the following</h3>
+<pre><code class="language-cs">Proxy proxy = new Proxy(&quot;ip&quot;,(int)port);
+if (proxy.isOnline(timeout:2000)){
+  Response r = s.Get(&quot;https://example.com&quot;,proxy:proxy)
+}
+</code></pre>
+<h4 id="socks-proxies-and-merging-the-environment-will-be-available-in-the-coming-update-maybe-lol">Socks proxies and merging the environment will be available in the coming update <code>MAYBE lol</code></h4>
+<hr>
+
+<h2 id="using-certificates">Using certificates</h2>
+<pre><code class="language-cs">X509Certificate2 certi = new X509Certificate2(&quot;path/to/certi.cert&quot;,&quot;PASSWORD If required&quot;);
+Response r = s.Get(&quot;https://example.com&quot;,cert:certi);
+</code></pre>
+<h3 id="or-you-can-persist-it_1">Or you can persist it</h3>
+<pre><code class="language-cs">X509Certificate2 certi = new X509Certificate2(&quot;path/to/certi.cert&quot;,&quot;PASSWORD If required&quot;);
+Session s = new Session(cert:certi);
+// To update it
+s.cert = newCert;
+// Then request normally
+</code></pre>
+<h2 id="timeouts">Timeouts</h2>
+<pre><code class="language-cs">int timeout = 9000;
+Response r = s.Get(&quot;https://example.com&quot;,timeout:timeout);
+</code></pre>
+<h3 id="for-a-unlimted-timeout">For a unlimted timeout</h3>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://example.com&quot;,timeout:-2);
+</code></pre>
+<h3 id="note-the-timeout-is-used-to-prevent-the-client-from-throwing-a-error-when-the-server-still-didnot-send-any">NOTE: the timeout is used to prevent the client from throwing a error when the server still didnot send any</h3>
+<h3 id="else-if-it-wasnot-reachable-it-will-still-throw-a-error">Else if it wasnot reachable it will still throw a error</h3>
+<hr>
+
+<h2 id="and-yes-we-are-done-for-now-please-donot-forget-to-star-the-github-repo">And Yes We Are Done For Now Please Donot Forget To Star The <a href="https://www.github.com/RequestSharp/RequestSharp">github repo</a></h2></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="RequestSharp">
+        <link rel="canonical" href="https://requestsharp.github.io/Reference/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Reference - RequestSharp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">RequestSharp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Http%20Methods/" class="nav-link">Http Methods</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Advanced/" class="nav-link">Advanced</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Reference</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Advanced/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#reference" class="nav-link">Reference</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#session" class="nav-link">Session</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cookiejar" class="nav-link">CookieJar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cookie-attributes" class="nav-link">Cookie Attributes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#response" class="nav-link">Response</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#proxy" class="nav-link">Proxy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="reference">Reference</h1>
+<hr>
+<h2 id="session"><strong>Session</strong></h2>
+<h4 id="session-is-the-main-class-to-send-the-http-requests">session is the main class to send the http requests</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th align="center"><strong>Used for</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Session.headers</td>
+<td align="center">The headers that the client will be sending in each request you can get the default from Defaultparms.headers <strong>(Dictionary&lt;string, string&gt;)</strong></td>
+</tr>
+<tr>
+<td>Session.CookiesJar</td>
+<td align="center">The Session cookies that the client will be sending in each request if specified you can initialize it using RequestSharp.cookies.CookieJar     <strong>(CookieJar)</strong></td>
+</tr>
+<tr>
+<td>Session.cert</td>
+<td align="center">The certificate file that the client will be using you can initialize it with the X509Certificate2 class     <strong>(X509Certificate2)</strong></td>
+</tr>
+<tr>
+<td>Session.timeout</td>
+<td align="center">The time in seconds the client will stop retrying after NOTE: not sure if it works if the internet connection is off   <strong>(int)</strong></td>
+</tr>
+<tr>
+<td>Session.allowAutoRedirect</td>
+<td align="center">if true the client will accept redirects DEFAULT : true   <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>Session.proxy</td>
+<td align="center">The proxy that the client will be using to make requests you can initialize it using RequestSharp.proxy.Proxy takes a ip and a port   <strong>(Proxy)</strong></td>
+</tr>
+<tr>
+<td>Session.ClientCertificateOptions</td>
+<td align="center">Specifies the certificate options that will be using you can initialize it using System.Net.Http.ClientCertificateOption NOTE: you dont need it to use the certificate                  <strong>(ClientCertificateOption)</strong></td>
+</tr>
+<tr>
+<td>Session.verify_ssl</td>
+<td align="center">If false it will not verify for ssl DEFAULT : true <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>Session.AutomaticDecompression</td>
+<td align="center">Decompressing the data were sent from the server <strong>(NOT IMPLEMENTED YET)</strong></td>
+</tr>
+<tr>
+<td>Session.maxAutomaticRedirections</td>
+<td align="center">max amount of redirections <strong>(NOT IMPLEMENTED YET)</strong></td>
+</tr>
+<tr>
+<td>Session.maxResponseContentBufferSize</td>
+<td align="center">The max size could the server (The website) send default -1 for unlimted   <strong>(NOT IMPLEMENTED YET)</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods"><strong>Methods</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th align="center"><strong>Used for</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get</td>
+<td align="center">Sends a GET request to a specifec Url  <a href="https://requestsharp.github.io/docs/Http%20Methods/#get">arguments</a></td>
+</tr>
+<tr>
+<td>Post</td>
+<td align="center">Sends a POST request to a specifec Url  <a href="https://requestsharp.github.io/docs/Http%20Methods/#post">arguments</a></td>
+</tr>
+<tr>
+<td>PostList</td>
+<td align="center">same as post but the data is Dictionary&lt;string, List&lt;&gt;string&gt;</td>
+</tr>
+<tr>
+<td>ClearCookies</td>
+<td align="center">To clear the cookies were given to the Session</td>
+</tr>
+<tr>
+<td>ClearHeaders</td>
+<td align="center">Will clear the headers were given to the Session BUT will stick with default ones</td>
+</tr>
+<tr>
+<td>ClearAllHeaders</td>
+<td align="center">Will clear all the headers even the default ones</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+<h2 id="cookiejar"><strong>CookieJar</strong></h2>
+<h4 id="the-cookiejar-class-represents-a-collection-of-cookies-dictionary-that-can-be-used-to-manage-the-requests-cookies">The CookieJar class represents a collection of cookies Dictionary that can be used to manage the requests cookies</h4>
+<h5 id="cookie-object-attributes">Cookie object attributes</h5>
+<h3 id="attributes"><strong>Attributes</strong></h3>
+<h2 id="cookie-attributes">Cookie Attributes</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th align="center"><span><strong>Used for</strong><span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td align="center">The name of the cookie  <strong>(Required)</strong> <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>Value</td>
+<td align="center">The value of the cookie <strong>(Required)</strong> <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td align="center">The domain to which the cookie applies to (EX. google.com) <strong>(Optional)</strong> <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>Path</td>
+<td align="center">The path within the domain to which the cookie applies (EX. "/") <strong>(Optional)</strong> <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>Expires</td>
+<td align="center">The date and time at which the cookie expires <strong>(Optional)</strong> <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>Secure</td>
+<td align="center">A flag indicating whether the cookie should be sent over a secure connection only (Like HTTPS) <strong>(Optional)</strong> <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>HttpOnly</td>
+<td align="center">A flag indicating whether the cookie should be accessible only through HTTP requests <strong>(Optional)</strong> <strong>(bool)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="methods_1"><strong>Methods</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th align="center"><strong>Used for</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add</td>
+<td align="center">Adds a cookie to the jar <strong>(Cookie &#124;&#124; Cookie paramters)</strong></td>
+</tr>
+<tr>
+<td>Contains</td>
+<td align="center">Returns <strong>(bool)</strong> true if the  jar contains a cookie with the given name else false takes name as argument <strong>(string )</strong></td>
+</tr>
+<tr>
+<td>Get</td>
+<td align="center">Returns the <strong>(Cookie)</strong> objectwith the given name or null if the cookie does not exist in the jar takes name as argument <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>GetAll</td>
+<td align="center">Returns all cookies in the cookie jar <strong>(IEnumerable&lt;string&gt;)</strong></td>
+</tr>
+<tr>
+<td>Clear</td>
+<td align="center">Removes all cookies from the cookie jar NOT RECCOMMEND</td>
+</tr>
+<tr>
+<td>SetCookieHeader</td>
+<td align="center">Parses a cookie header string and adds the cookies to the jar <strong>(string,Uri)</strong></td>
+</tr>
+<tr>
+<td>GetCookieHeader</td>
+<td align="center">Returns a string containing the cookies in the cookie jar as a cookie header string Argument <strong>(Uri)</strong> returns <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>GetCookiesJson</td>
+<td align="center">returns the cookies as a json <strong>(string)</strong> takes a <strong>(CookieJar)</strong> as a <strong>(Optional)</strong> argument</td>
+</tr>
+<tr>
+<td>GetCookieContainer</td>
+<td align="center">Returns a new <strong>(CookieContainer)</strong> containing the cookies in the  jar takes a <strong>(CookieJar)</strong> as a <strong>(Optional)</strong> argument</td>
+</tr>
+<tr>
+<td>setCookiesFromHeaders</td>
+<td align="center">Parses the Set-Cookie header in a <strong>(Dictionary&lt;string, string&gt;)</strong> and adds the cookies to the jar</td>
+</tr>
+<tr>
+<td>ToCookieCollection</td>
+<td align="center">Returns a new <strong>(CookieCollection)</strong> containing the cookies in the jar</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+<h2 id="response"><strong>Response</strong></h2>
+<h4 id="the-response-class-represents-an-http-response-from-a-web-server">The Response class represents an HTTP response from a web server</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th align="center"><span><strong>Used for</strong><span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td align="center">A byte array representing the response content <strong>(byte[])</strong></td>
+</tr>
+<tr>
+<td>cookies</td>
+<td align="center">A CookieJar object representing the cookies associated with the response <strong>(CookieJar)</strong></td>
+</tr>
+<tr>
+<td>elapsed</td>
+<td align="center">A string representing the time elapsed during the request as a example "12s" <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>encoding</td>
+<td align="center">A string representing the encoding of the response content <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>headers</td>
+<td align="center">A dictionary of strings representing the response headers <strong>(Dictionary)</strong></td>
+</tr>
+<tr>
+<td>is_permanent_redirect</td>
+<td align="center">A boolean value indicating if the response is a permanent redirect <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>is_redirect</td>
+<td align="center">A boolean value indicating if the response is a redirect <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>links</td>
+<td align="center">A list of strings representing the links in the response <strong>(List<string>)</strong> <strong>(NOT IMPLEMENTED YET)</strong></td>
+</tr>
+<tr>
+<td>ok</td>
+<td align="center">A boolean value indicating if the request was successful <strong>(bool)</strong></td>
+</tr>
+<tr>
+<td>reason</td>
+<td align="center">A string representing the reason for the response status code <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>status_code</td>
+<td align="center">An integer representing the response status code <strong>(int)</strong></td>
+</tr>
+<tr>
+<td>text</td>
+<td align="center">A string representing the response content as text <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>url</td>
+<td align="center">A string representing the URL of the response <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>apparentEncoding</td>
+<td align="center">A string representing the apparent encoding of the response content <strong>(NOT IMPLEMENTED YET)</strong> it will be same as encoding</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="methods_2"><strong>Methods</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th align="center"><strong>Used for</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>json</td>
+<td align="center">Returns a JSON string representation of the Response object <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>textInJson</td>
+<td align="center">Returns a JObject representation of the text response content <strong>(JObject)</strong></td>
+</tr>
+<tr>
+<td>headersInJson</td>
+<td align="center">Returns a JObject representation of the response headers <strong>(JObject)</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="proxy"><strong>Proxy</strong></h2>
+<pre><code class="language-cs">// Initilizing
+Proxy proxy = new Proxy(&quot;ip&quot;,(int)port);
+//
+IP ip = new IP(&quot;theipaddress&quot;);
+PORT port = new PORT(443);
+Proxy proxy1 = new Proxy(ip,port)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th align="center"><span><strong>Used for</strong><span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ip</td>
+<td align="center">The ip address in IP object <strong>(IP)</strong></td>
+</tr>
+<tr>
+<td>port</td>
+<td align="center">The port in PORT object <strong>(PORT)</strong></td>
+</tr>
+<tr>
+<td>username</td>
+<td align="center">The username for auth <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>password</td>
+<td align="center">The password for auth <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>httpUrl</td>
+<td align="center">The http url for the proxy <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>httpsUrl</td>
+<td align="center">The https url for the proxy <strong>(string)</strong></td>
+</tr>
+<tr>
+<td>authString</td>
+<td align="center">The auth string in {username}:{password}@ <strong>(string)</strong></td>
+</tr>
+<tr>
+<td><br></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>### <strong>Methods</strong></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th align="center"><strong>Used for</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetProxyType</td>
+<td align="center">Returns the proxyTypes based on the port</td>
+</tr>
+<tr>
+<td>setIpAddress</td>
+<td align="center">To set the ip and in the urls</td>
+</tr>
+<tr>
+<td>setPortNumber</td>
+<td align="center">To set the port and in the urls</td>
+</tr>
+<tr>
+<td>isOnline</td>
+<td align="center">Checks whether its online or no by pinging the IP if online it will be true else false <strong>(bool)</strong></td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

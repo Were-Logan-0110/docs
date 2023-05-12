@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="RequestSharp docs the http library for humans">
+        <meta name="author" content="RequestSharp">
+        <link rel="canonical" href="https://requestsharp.github.io/">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>RequestSharp</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">RequestSharp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="Http%20Methods/" class="nav-link">Http Methods</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="Advanced/" class="nav-link">Advanced</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="Reference/" class="nav-link">Reference</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="Http%20Methods/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#quick-start" class="nav-link">Quick Start</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#the-main-namespaces" class="nav-link">The main namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#making-your-first-get-request" class="nav-link">Making your first GET request</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#making-your-first-post-request" class="nav-link">Making your first POST request</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#passing-parameters-in-urls" class="nav-link">Passing Parameters In URLs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#response-content" class="nav-link">Response content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#binary-response-content" class="nav-link">Binary Response Content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#custom-headers" class="nav-link">Custom Headers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#more-complicated-post-requests" class="nav-link">More Complicated POST requests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#uploading-files" class="nav-link">Uploading files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#response-status-codes" class="nav-link">Response Status Codes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#response-headers" class="nav-link">Response Headers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cookies" class="nav-link">Cookies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#allowing-redirects" class="nav-link">Allowing redirects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="installation"><strong>Installation</strong></h2>
+<h4 id="you-can-build-from-source-at-the-github-repo">You can build from source at the <a href="https://www.github.com/RequestSharp/RequestSharp">github repo</a></h4>
+<h4 id="or-using-the-nuget-package-manger">Or using the <a href="https://www.nuget.org/packages/RequestSharp">nuget package manger</a></h4>
+<p><br></p>
+<h1 id="quick-start">Quick Start</h1>
+<h4 id="introduction"><strong>Introduction</strong></h4>
+<h3 id="requestsharp-is-a-simple-http-client-library-made-for-humans"><em>RequestSharp is a simple http  client library made for humans</em></h3>
+<h4 id="fully-inspired-by-the-python-requests-module">Fully inspired by the python <a href="https://github.com/psf/requests">requests</a> module</h4>
+<h4 id="built-using-the-httpclient-from-net">Built using the HttpClient from .NET</h4>
+<p><br></p>
+<h2 id="the-main-namespaces"><strong>The main namespaces</strong></h2>
+<hr>
+
+<div style="background-color: #f2f2f2; border-radius: 5px; padding: 10px;">
+<h5>The main namespace that contains the Session object that you will be sending Requests using</h5>
+<p><span style="color:blue;">using</span> <span style="color:red">RequestSharp</span>.<span style="color:purple;text-decoration:underline;"><a href="https://requestsharp.github.io/docs/Reference/#session">session</a></span>;</p>
+</div>
+<p><br></p>
+<div style="background-color: #f2f2f2; border-radius: 5px; padding: 10px;">
+<h5>The namespace that contains the CookieJar object to control and handle Request cookies</h5>
+<p><span style="color:blue">using</span> <span style="color:red">RequestSharp</span>.<span style="color:purple;text-decoration:underline;"><a href="https://requestsharp.github.io/docs/Reference/#cookiejar">cookies</a></span>;</p>
+</div>
+
+<p><br></p>
+<div style="background-color: #f2f2f2; border-radius: 5px; padding: 10px;">
+<h5>The namespace that contains the Response object that comes from each Request</h5>
+<p><span style="color:blue">using</span> <span style="color:red">RequestSharp</span>.<span style="color:purple;text-decoration:underline;"><a href="https://requestsharp.github.io/docs/Reference/#response">response</a></span>;</p>
+</div>
+
+<p><br></p>
+<div style="background-color: #f2f2f2; border-radius: 5px; padding: 10px;">
+<h5>The namespace that contains the default params (not needed)</h5>
+<p><span style="color:blue">using</span> <span style="color:red">RequestSharp</span>.<span style="color:purple">defaultParms</span>;</p>
+</div>
+<p><br></p>
+<div style="background-color: #f2f2f2; border-radius: 5px; padding: 10px;">
+<h5>The namespace that contains the Proxy object </h5>
+<p><span style="color:blue">using</span> <span style="color:red">RequestSharp</span>.<span style="color:purple"><a href="https://requestsharp.github.io/docs/Reference/#proxy">proxy</a></span>;</p>
+</div>
+
+<p><br></p>
+<h2 id="making-your-first-get-request"><strong>Making your first GET request</strong></h2>
+<pre><code class="language-cs">// The main classes
+// Lets start by initializing our session class
+Session s = new Session();
+// Now lets send a super simple reuqest to https://httpbin.org/get site to extract the json data
+
+Response response = s.Get(&quot;https://httpbin.org/get&quot;);
+// Now this will return the Response class from Requests.response namespace
+
+// Now lets start by printing the content of the page
+Console.WriteLine(response.text);
+// Yes easy as that
+
+// You can also use 
+JObject json = response.textInJson();
+Console.WriteLine(json[&quot;origin&quot;])  // Will print a ip address
+// To get the json object so you can index it easily
+
+</code></pre>
+<h2 id="making-your-first-post-request"><strong>Making your first POST request</strong></h2>
+<pre><code class="language-cs">// Lets start by initializing our session class
+Session s = new Session();
+// Now lets send a super simple reuqest to send some data to https://httpbin.org/post
+
+// First of all we need to make the Dictionary that will contain our data
+
+Dictionary&lt;string,string&gt; payload = new Dictionary&lt;string,string&gt;(){
+    {&quot;key&quot;,&quot;value&quot;}
+}
+// Now we are ready to send the data
+Response response = s.Post(&quot;https://httpbin.org/post&quot;,data:payload);
+// This will return the Response object
+</code></pre>
+<hr>
+<h2 id="passing-parameters-in-urls"><strong> Passing Parameters In URLs </strong></h2>
+<pre><code class="language-cs">// The parameters is a Dictionary with strings key and value
+Dictionary&lt;string, string&gt; paramters = new Dictionary&lt;string, string&gt;()
+{
+    {&quot;q&quot;,&quot;RequestSharp&quot;}
+};
+
+// As a example we will be sending a GET request to the github repo api to search Repo with that name
+Response r = s.Get(&quot;https://api.github.com/search/repositories&quot;,parameters:params);
+
+Console.WriteLine(r.url); // https://api.github.com/search/repositories?q=RequestSharp
+</code></pre>
+<h5 id="you-can-also-pass-a-dictionary-with-string-and-list"><strong>You can also pass a Dictionary with string and List<string></strong></h5>
+<pre><code class="language-cs">Dictionary&lt;string,List&lt;string&gt;&gt;
+</code></pre>
+<h6 id="as-example">As example</h6>
+<pre><code class="language-cs">Dictionary&lt;string, object&gt; parameters = new Dictionary&lt;string, object&gt;()
+{
+    {&quot;key1&quot;, &quot;value1&quot;},
+    {&quot;key2&quot;, new List&lt;string&gt;{&quot;value2&quot;, &quot;value3&quot;}}
+};
+&lt;hr&gt;
+</code></pre>
+<h2 id="response-content"><strong>Response content</strong></h2>
+<pre><code class="language-cs">Response r = s.Get(url/* Other parameters*/);
+Console.WriteLine(r.text);
+// The response text from the server
+</code></pre>
+<h5 id="lets-say-it-was-json-and-you-want-to-index-it">Lets say it was json and you want to index it</h5>
+<pre><code class="language-cs">string url = &quot;https://httpbin.org/ip&quot;;
+Response r = s.Get(url);
+JObject json = r.textInJson();
+// This will return a json object that can be indexed easily
+Console.WriteLine(json[&quot;origin&quot;]);
+</code></pre>
+<h4 id="the-text-encoding">The text encoding</h4>
+<h5 id="in-a-feature-release-you-will-be-able-to-get-the-response-text-based-on-the-encoding">In a feature release you will be able to get the Response text based on the encoding</h5>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://api.github.com/search/repositories?q=RequestSharp&quot;)
+Console.WriteLine(r.encoding)
+// utf-8
+</code></pre>
+<p><span style="color:red">IMPORTANT NOTE ABOUT ENCODING</span>:
+if the encoding wasnot sent in the headers encoding will be a null or empty string
+ANOTHER NOTE: apparent encoding is not supported for now</p>
+<hr>
+
+<h2 id="binary-response-content"><strong>Binary Response Content</strong></h2>
+<h5 id="you-can-get-the-binary-using">You can get the binary using</h5>
+<pre><code class="language-cs">byte[] BytesArray = r.content;
+// thebinarycontent
+</code></pre>
+<h3 id="as-a-example-you-can-safe-a-image-using">As a example you can safe a image using</h3>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://avatars.githubusercontent.com/u/123822233?v=4&quot;);
+string path = @&quot;Path\to\save.jpeg&quot;
+System.IO.File.WriteAllBytes(path, r.content);
+</code></pre>
+<hr>
+
+<h2 id="custom-headers"><strong>Custom Headers</strong></h2>
+<h4 id="to-add-headers-to-the-request-by-making-a-dictionary-with-stringstring">To add headers to the request by making a Dictionary with <code>&lt;string,string&gt;</code></h4>
+<pre><code class="language-cs">Dictionary&lt;string,string&gt; headers = new Dictionary&lt;string,string&gt;(){
+    {&quot;user-agent&quot;,&quot;cs-requests/0.1&quot;}
+}; // BTW thats the default user-agent in RequestSharp
+Response r = s.Get(&quot;https://httpbin.org/headers&quot;,headers:headers);
+Console.WriteLine(r.text); //Headers the server sent back
+/*
+{
+  &quot;headers&quot;: {
+    &quot;Host&quot;: &quot;httpbin.org&quot;,
+    &quot;User-Agent&quot;: &quot;cs-requests/0.1&quot;,
+    &quot;X-Amzn-Trace-Id&quot;: &quot;X-Amzn-Trace-Id VALUE&quot;
+  }
+}
+*/
+</code></pre>
+<hr>
+
+<h2 id="more-complicated-post-requests"><strong>More Complicated POST requests</strong></h2>
+<p><br></p>
+<h4 id="what-about-sending-multiple-values-with-the-same-key">What about sending <strong>multiple values</strong> with the same key</h4>
+<h5 id="sadly-c-doesnot-support-duplicate-keys-directly-in-a-dictionary-so-we-will-be-doing-it-in-another-way-using">Sadly C# doesnot support duplicate keys directly in a Dictionary so we will be doing it in another way using</h5>
+<h5 id="dictionary-with-strings-as-keys-and-lists-as-the-values">Dictionary with strings as keys and Lists as the values</h5>
+<h6 id="as-a-example">As a example</h6>
+<pre><code class="language-cs">// List contains values
+List&lt;string&gt; values = new List&lt;string&gt;{&quot;value1&quot;,&quot;value2&quot;};
+// The list that contains the payload will be sent in the POST request
+Dictionary&lt;string,List&lt;string&gt;&gt; payload = new Dictionary&lt;string,List&lt;string&gt;&gt;{
+    {&quot;key1&quot;,new List&lt;string&gt;{&quot;value1&quot;,&quot;value2&quot;}}
+    {&quot;key2&quot;,values}
+
+Response r = s.PostList(&quot;https://httpbin.org/post&quot;,data:payload);
+} ;
+Console.WriteLine(r.text);
+/*
+{
+  ...
+  &quot;form&quot;: {
+    &quot;key1&quot;: [
+      &quot;value1&quot;,
+      &quot;value2&quot;
+    ]
+  },{
+    &quot;key2&quot;:[
+        &quot;value1&quot;,
+        &quot;value2&quot;
+    ]
+  }
+  ...
+}
+*/
+</code></pre>
+<hr>
+
+<h2 id="uploading-files"><strong>Uploading files</strong></h2>
+<h3 id="you-can-simply-upload-files-using-paths-only">You can simply upload files using paths only</h3>
+<h4 id="to-upload-you-need-to-make-a-list-with-the-paths-note-you-can-send-data-with-the-files-normally">To upload you need to make a List with the paths NOTE: You can send data with the files normally</h4>
+<pre><code class="language-cs">List&lt;string&gt; files = new List&lt;string&gt;{
+    &quot;Path/To/The/firstfile.ext&quot;,
+    &quot;Path/To/The/secondfile.ext&quot;
+}
+Response r = s.Post(&quot;https://httpbin.org/post&quot;,files:files)
+</code></pre>
+<h5 id="optionally-you-can-include-the-file-names-in-a-diffrent-list"><strong>Optionally you can include the file names in a diffrent List</strong></h5>
+<pre><code class="language-cs">List&lt;string&gt; filesnames = new List&lt;string&gt;{
+    &quot;FileName1.ext&quot;,
+    &quot;FileName2.ext&quot;
+}
+List&lt;string&gt; files = new List&lt;string&gt;{
+    &quot;Path/To/The/firstfile.ext&quot;,
+    &quot;Path/To/The/secondfile.ext&quot;
+}
+Response r = s.Post(&quot;https://httpbin.org/post&quot;,files:files,filesnames:filesnames)
+</code></pre>
+<hr>
+
+<h2 id="response-status-codes"><strong>Response Status Codes</strong></h2>
+<h4 id="we-can-get-the-response-status-code-using">We can get the response status code using:</h4>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://httpbin.org/get&quot;);
+Console.WriteLine(r.status_code);
+
+// 200
+</code></pre>
+<h5 id="if-we-made-a-bad-request-a-4xx-client-error-or-5xx-server-error-response-we-can-raise-it-with-responseraiseforstatus">If we made a bad request (a 4XX client error or 5XX server error response), we can raise it with Response.RaiseForStatus():</h5>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://httpbin.org/status/404&quot;);
+r.RaiseForStatus(); // Unhandled exception. System.Net.Http.HttpRequestException: 404 Client Error: Reason: NOT FOUND
+</code></pre>
+<h5 id="or">OR</h5>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://httpbin.org/status/500&quot;);
+r.RaiseForStatus(); // Unhandled exception. System.Net.Http.HttpRequestException: 500 Server Error: Reason: INTERNAL SERVER ERROR
+</code></pre>
+<hr>
+
+<h2 id="response-headers"><strong>Response Headers</strong></h2>
+<h4 id="we-can-view-the-servers-response-headers-by-iterating-through-the-dictionary">We can view the server’s response headers by iterating through the Dictionary:</h4>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://httpbin.org/headers&quot;)
+foreach(var head in headers){
+    Console.WriteLine($&quot;{head.Key},{head.Value}&quot;)
+}
+</code></pre>
+<h5 id="you-can-index-it-as-json-using">You can index it as json using</h5>
+<pre><code class="language-cs">JObject jsonHeaders = r.headersInJson();
+Console.WriteLine(jsonHeaders[&quot;user-agent&quot;]); // cs-requests/0.1
+</code></pre>
+<h2 id="cookies"><strong>Cookies</strong></h2>
+<h4 id="if-the-response-headers-contains-cookies-you-can-access-them-easily-by">If the response headers contains cookies you can access them easily by:</h4>
+<pre><code class="language-cs">Response r = s.Get(&quot;https://examplesite.com/get/cookies&quot;);
+// The CookieJar exists in RequestSharp.cookies
+CookieJar cookies = r.cookies;
+// We can loop them using
+foreach(Cookie cookie in cookies.GetAll()){
+    Console.WriteLine($&quot;{cookie.Name}:{cookie.Value}:{cookie.Domain} Etc...&quot;);
+}
+// Or get only one by its name
+Cookie cookie = cookies.Get(&quot;name&quot;)
+</code></pre>
+<h4 id="or-we-can-access-the-json-string-using">Or we can access the json string using:</h4>
+<pre><code class="language-cs">Console.WriteLine(cookies.GetCookiesJson());
+</code></pre>
+<h3 id="to-send-your-own-cookies">To send your own cookies</h3>
+<pre><code class="language-cs">CookieJar jar = new CookieJar()
+// To can add a cookie using two ways
+// First
+jar.Add(&quot;name&quot;,&quot;value&quot;,&quot;domain.com&quot;,/*PATH*/&quot;/&quot;   /*OTHER PARAMS*/);
+// Second
+Cookie cookie = new Cookie(&quot;name&quot;,&quot;value&quot;,&quot;domain.com&quot;,/*PATH*/&quot;/&quot;   /*OTHER PARAMS*/);
+jar.Add(cookie)
+// Usefull in some cases when you want to get a cookie from a site and add it to another AS A EXAMPLE
+CookieJar cookies = r.cookies;
+CookieJar cookiesToSend = new CookieJar();
+cookiesToSend.Add(cookies.Get(&quot;name&quot;).setDomain(&quot;target.com&quot;))
+Response r = s.Get(&quot;https://target.com&quot;,cookies:cookiesToSend);
+// Cool right?
+</code></pre>
+<h2 id="allowing-redirects"><strong>Allowing redirects</strong></h2>
+<h4 id="you-can-allow-redirects-using">You can allow redirects using:</h4>
+<pre><code class="language-cs">bool allowRedirects = false;
+Response r = s.Get(&quot;https://httpbin.org/redirect-to?url=https%3A%2F%2Fgoogle.com&amp;status_code=302&quot;,allow_redirects:allowRedirects);
+Console.WriteLine(r.status_code); // 302
+Console.WriteLine(r.is_redirect) // true
+</code></pre>
+<h3 id="important-note-if-allow_redirects-was-true-the-status_code-will-be-200-and-is_redirect-will-be-false">Important note: If allow_redirects was true the status_code will be 200 and is_redirect will be false</h3>
+<hr>
+
+<h3 id="we-are-done-for-now">We are done for now</h3>
+<h4 id="want-more-advanced">Want more? <a href="https://requestsharp.github.io/docs/advanced">advanced</a></h4></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.4.3
+Build Date UTC : 2023-05-12 22:06:26.981749+00:00
+-->
